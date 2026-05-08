@@ -1,0 +1,93 @@
+Leia:
+
+* AGENTS.md
+* .github/PLAYBOOK.md
+* agent-platform/AGENTS.md
+* agent-platform/PROJECT_SPEC.md
+* agent-platform/BUILD_WITH_AI.md
+* agent-platform/PROJECT_SCHEMA.md
+* agent-platform/platform.yaml
+
+Crie um projeto multi-agente de teste em:
+projects/garantia-imovel-test/
+
+Primeiro gere o agents.yaml. Depois execute o scaffold. Depois refine os arquivos gerados.
+
+Requisitos do projeto:
+
+* Arquitetura: supervisor
+* Provider LLM: GPT-4 via Azure usando SDK IARA
+* Runtime: LangGraph + LangChain
+* Contratos: Pydantic
+* Observabilidade: Langfuse
+* Avaliação: RAGAS-ready
+* Interface de debug: Streamlit
+
+Agentes:
+
+1. orchestrator
+
+   * tipo: supervisor
+   * coordena o fluxo completo
+   * chama os agentes na ordem correta
+   * consolida os outputs
+   * aciona o critic antes da resposta final
+
+2. registry_fetcher
+
+   * tipo: worker
+   * possui tools
+   * consulta uma API fictícia de matrículas de imóveis
+   * entrada: identificador do imóvel ou número da matrícula
+   * saída: dados estruturados da matrícula
+
+3. lienability_analyzer
+
+   * tipo: worker
+   * possui judge
+   * lê os dados da matrícula
+   * analisa se o imóvel parece penhorável ou não
+   * não deve emitir parecer jurídico definitivo
+   * deve retornar conclusão, justificativa e riscos
+
+4. market_price_researcher
+
+   * tipo: worker
+   * possui tools
+   * pesquisa preço aproximado do imóvel em fonte web configurável
+   * use um client/tool mockado, sem chamada real à internet por enquanto
+   * saída: valor estimado, fonte, data da consulta e grau de confiança
+
+5. guarantee_decider
+
+   * tipo: worker
+   * possui judge
+   * decide se o imóvel pode ser aceito como garantia
+   * regra de teste:
+
+     * aceitar somente se penhorável = true
+     * e valor estimado >= 500000
+   * saída: aceitar_garantia, justificativa, condições e alertas
+
+6. critic
+
+   * tipo: judge
+   * valida consistência entre:
+
+     * matrícula
+     * análise de penhorabilidade
+     * preço estimado
+     * decisão de garantia
+   * aponta contradições e riscos
+
+Não implemente chamadas reais para APIs externas. Crie tools mockadas com interfaces claras para futura integração.
+
+Não adicione regras jurídicas reais além da regra de teste informada.
+
+Mantenha prompts em Markdown.
+
+Mantenha modelos Pydantic em models.py.
+
+Mantenha tools dentro do agente que usa a integração.
+
+Gere README básico explicando como testar localmente.

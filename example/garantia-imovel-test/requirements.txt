@@ -1,0 +1,11 @@
+langchain
+langgraph
+pydantic
+pydantic-settings
+langfuse
+ragas
+dspy-ai
+fastapi
+uvicorn
+streamlit
+pyyaml

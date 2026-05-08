@@ -1,0 +1,97 @@
+version: 1
+
+platform:
+
+name: agent-platform
+
+description: >
+AI-native platform accelerator for building
+multi-agent systems using LangGraph,
+LangChain, Pydantic, Langfuse, RAGAS, and DSPy.
+
+architecture:
+style: ai-native
+orchestration: langgraph
+runtime: langchain
+contracts: pydantic
+observability: langfuse
+evaluation: ragas
+optimization: dspy
+
+repository:
+
+philosophy:
+- semantic-locality
+- deterministic-structure
+- low-cognitive-overhead
+- ai-agent-friendly
+- convention-over-configuration
+
+generated_structure:
+
+```
+root:
+  - agents
+  - shared
+  - interfaces
+  - eval
+  - scripts
+
+worker_agent:
+  - agent.py
+  - prompt.md
+  - models.py
+  - judge.py
+  - AGENT_SPEC.md
+
+orchestrator:
+  - graph.py
+  - state.py
+  - routing.py
+  - supervisor.py
+  - AGENT_SPEC.md
+```
+
+capabilities:
+
+supports:
+- supervisor-agents
+- hierarchical-agents
+- collaborative-agents
+- planner-executor
+- critic-loops
+- human-in-the-loop
+
+defaults:
+
+interfaces:
+api: true
+streamlit: true
+
+evaluation:
+ragas: true
+llm_as_judge: true
+golden_sets: true
+
+observability:
+langfuse: true
+
+async:
+enabled: true
+
+structured_outputs:
+enabled: true
+
+scaffolding:
+
+generator: scripts/scaffold.py
+
+project_definition_file: agents.yaml
+
+examples_directory: examples/
+
+templates:
+
+location: templates/
+
+examples:

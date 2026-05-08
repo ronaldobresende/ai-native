@@ -1,0 +1,3 @@
+{"identificador_imovel":"IMOVEL-HIGH-001","expected_acceptance":true,"notes":"Mock high-value regular property."}
+{"identificador_imovel":"IMOVEL-LOW-001","expected_acceptance":false,"notes":"Mock low-value regular property."}
+{"identificador_imovel":"IMOVEL-BLOQ-HIGH-001","expected_acceptance":false,"notes":"Mock blocked property despite high value."}

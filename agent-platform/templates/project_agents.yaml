@@ -1,0 +1,44 @@
+version: 1
+
+project:
+  name: my-agent-project
+  description: >
+    AI-native multi-agent system generated from agent-platform.
+
+platform:
+  starter: agent-platform
+
+runtime:
+  orchestration: langgraph
+  llm_framework: langchain
+  observability: langfuse
+  evaluation: ragas
+  optimization: dspy
+
+interfaces:
+  api: true
+  streamlit: true
+
+agents:
+  - name: orchestrator
+    type: supervisor
+    description: >
+      Coordinates graph execution, routing, retries, and supervision.
+
+  - name: worker_a
+    type: worker
+    has_judge: true
+    description: >
+      Replace this description with the first worker responsibility.
+
+  - name: worker_b
+    type: worker
+    has_tools: true
+    has_judge: true
+    description: >
+      Replace this description with the second worker responsibility.
+
+  - name: critic
+    type: judge
+    description: >
+      Validates consistency, coherence, and reasoning quality.

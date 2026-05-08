@@ -1,0 +1,21 @@
+[project]
+name = "garantia-imovel-test"
+version = "0.1.0"
+requires-python = ">=3.11"
+
+dependencies = [
+    "langchain",
+    "langgraph",
+    "pydantic",
+    "pydantic-settings",
+    "langfuse",
+    "ragas",
+    "dspy-ai",
+    "fastapi",
+    "uvicorn",
+    "streamlit",
+    "pyyaml",
+]
+
+[tool.ruff]
+line-length = 79

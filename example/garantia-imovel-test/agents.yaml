@@ -1,0 +1,69 @@
+version: 1
+
+project:
+  name: garantia-imovel-test
+  description: >
+    Projeto multi-agente de teste para avaliar uma garantia imobiliaria
+    com consulta mockada de matricula, analise de penhorabilidade,
+    pesquisa mockada de preco, decisao por regra de teste e critica final.
+
+platform:
+  starter: agent-platform
+
+runtime:
+  architecture: supervisor
+  orchestration: langgraph
+  llm_framework: langchain
+  llm_provider: azure-openai
+  llm_model: gpt-4
+  llm_sdk: iara
+  contracts: pydantic
+  observability: langfuse
+  evaluation: ragas
+  optimization: dspy
+
+interfaces:
+  api: true
+  streamlit: true
+
+agents:
+  - name: orchestrator
+    type: supervisor
+    description: >
+      Coordena o fluxo completo, chama os agentes na ordem correta,
+      consolida os outputs e aciona o critic antes da resposta final.
+
+  - name: registry_fetcher
+    type: worker
+    has_tools: true
+    description: >
+      Consulta uma API ficticia de matriculas de imoveis por identificador
+      do imovel ou numero da matricula e retorna dados estruturados.
+
+  - name: lienability_analyzer
+    type: worker
+    has_judge: true
+    description: >
+      Le os dados da matricula e analisa, sem parecer juridico definitivo,
+      se o imovel parece penhoravel, retornando conclusao, justificativa e riscos.
+
+  - name: market_price_researcher
+    type: worker
+    has_tools: true
+    description: >
+      Pesquisa, com client/tool mockado e fonte web configuravel, o preco
+      aproximado do imovel e retorna estimativa, fonte, data e confianca.
+
+  - name: guarantee_decider
+    type: worker
+    has_judge: true
+    description: >
+      Decide se o imovel pode ser aceito como garantia usando a regra de teste:
+      aceitar somente se penhoravel for true e valor estimado for maior ou igual
+      a 500000.
+
+  - name: critic
+    type: judge
+    description: >
+      Valida consistencia entre matricula, analise de penhorabilidade, preco
+      estimado e decisao de garantia, apontando contradicoes e riscos.
