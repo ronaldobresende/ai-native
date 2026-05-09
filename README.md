@@ -7,6 +7,7 @@ Este repositório fornece uma plataforma para construir, gerar, evoluir e operar
 * Codex
 * Claude Code
 * Devin
+* Gemini
 * GitHub Copilot
 
 A plataforma foi desenhada com foco em:
@@ -64,6 +65,229 @@ O repositório foi estruturado para que coding agents consigam:
 * criar grafos de orquestração
 * manter contratos
 * operar de forma autônoma
+
+---
+
+# Conceitos de Sistemas Multi-Agentes
+
+Sistemas multi-agentes são arquiteturas compostas por múltiplos agentes especializados que colaboram para resolver tarefas complexas.
+
+Em vez de utilizar um único agente extremamente genérico responsável por todas as tarefas, sistemas multi-agentes dividem responsabilidades em agentes menores, especializados e com objetivos mais claros.
+
+Exemplo conceitual:
+
+```text id="1f5w5k"
+Agente A → busca informações
+Agente B → resume conteúdo
+Agente C → valida consistência
+Agente D → toma decisão final
+```
+
+Essa abordagem melhora:
+
+* separação de responsabilidades
+* previsibilidade
+* manutenção
+* escalabilidade
+* observabilidade
+* governança
+* reutilização
+* avaliação de qualidade
+* evolução incremental do sistema
+
+Além disso, sistemas multi-agentes permitem combinar diferentes capacidades de modelos e agentes em um mesmo workflow.
+
+Exemplo:
+
+* um agente especializado em retrieval
+* outro em sumarização
+* outro em validação
+* outro em tomada de decisão
+
+---
+
+# Tipos de Agentes
+
+A plataforma utiliza tipos arquiteturais para representar o papel de cada agente dentro do workflow.
+
+O objetivo não é representar domínio de negócio, mas sim responsabilidade arquitetural.
+
+Exemplo:
+
+```yaml id="y7yy33"
+- name: credit_summary
+  type: worker
+```
+
+Neste caso:
+
+* `credit_summary` representa o domínio
+* `worker` representa o papel arquitetural
+
+---
+
+## `worker`
+
+Agente especializado em executar uma tarefa específica.
+
+Exemplos:
+
+* resumo
+* classificação
+* análise
+* extração
+* pesquisa
+* transformação de dados
+
+Normalmente workers recebem contexto, executam uma responsabilidade clara e retornam um resultado estruturado.
+
+---
+
+## `supervisor`
+
+Agente responsável por coordenar outros agentes.
+
+Funções comuns:
+
+* controlar fluxo
+* decidir ordem de execução
+* consolidar resultados
+* controlar estado do workflow
+* encerrar processos
+
+Arquiteturas supervisor são atualmente uma das formas mais comuns de sistemas multi-agentes corporativos.
+
+---
+
+## `judge`
+
+Agente responsável por validar outputs de outros agentes.
+
+Funções comuns:
+
+* detectar inconsistências
+* revisar respostas
+* validar coerência
+* reduzir alucinações
+* validar contratos estruturados
+
+O padrão "LLM-as-a-Judge" vem sendo amplamente utilizado em sistemas modernos de IA generativa.
+
+---
+
+## `router`
+
+Agente responsável por decidir para qual agente ou workflow uma tarefa deve ser enviada.
+
+Exemplo conceitual:
+
+```text id="5y8j8m"
+entrada financeira → financial_agent
+entrada jurídica → legal_agent
+```
+
+---
+
+## `planner`
+
+Agente responsável por decompor problemas complexos em etapas menores.
+
+Exemplo conceitual:
+
+```text id="i0py0o"
+1. buscar informações
+2. analisar contexto
+3. consolidar riscos
+4. gerar recomendação
+```
+
+---
+
+## `executor`
+
+Agente responsável por executar ações concretas.
+
+Exemplos:
+
+* chamadas de APIs
+* execução de SQL
+* integrações externas
+* automações
+* operações em arquivos
+
+---
+
+# Arquiteturas Multi-Agentes
+
+A plataforma foi desenhada para suportar diferentes topologias multi-agentes.
+
+Exemplos:
+
+* supervisor
+* planner/executor
+* router-based
+* collaborative
+* hierarchical
+* swarm
+
+Atualmente a topologia mais madura na plataforma é:
+
+```text id="w5t7k0"
+supervisor
+```
+
+---
+
+# Referências
+
+## Anthropic — Building Effective Agents
+
+https://www.anthropic.com/engineering/building-effective-agents
+
+Discussão moderna sobre:
+
+* agentes especializados
+* workflows explícitos
+* orquestração
+* sistemas multi-agentes determinísticos
+
+---
+
+## LangGraph — Multi-Agent Architectures
+
+https://langchain-ai.github.io/langgraph/concepts/multi_agent/
+
+Conceitos sobre:
+
+* orchestration
+* routing
+* state management
+* arquiteturas multi-agentes
+
+---
+
+## Microsoft AutoGen
+
+https://microsoft.github.io/autogen/
+
+Framework focado em:
+
+* colaboração entre agentes
+* workflows autônomos
+* conversação multi-agente
+
+---
+
+## Martin Fowler — Context Engineering for Coding Agents
+
+https://martinfowler.com/articles/exploring-gen-ai/context-engineering-coding-agents.html
+
+Discussão sobre:
+
+* context engineering
+* coding agents
+* workflows assistidos por IA
+* arquitetura AI-operable
 
 ---
 
