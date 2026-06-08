@@ -6,10 +6,11 @@ This document defines the **Workflow Architect** capability for `ai-native`.
 
 Workflow Architect is a design-time capability used by coding agents when translating a user prompt into a multi-agent project specification.
 
-It exists to support two valid ways of creating projects:
+It exists to support three practical architecture modes:
 
 1. The user explicitly describes the architecture.
-2. The user describes only the goal, and the coding agent infers the architecture.
+2. The user partially describes the architecture, such as by naming a pattern, workflow style or architectural constraint.
+3. The user describes only the goal, and the coding agent infers the architecture.
 
 In both cases, the result must be recorded in `agents.yaml` before the deterministic scaffold runs.
 
