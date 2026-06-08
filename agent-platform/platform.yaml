@@ -55,6 +55,7 @@ orchestrator:
 capabilities:
 
 supports:
+- workflow-architect
 - supervisor-agents
 - hierarchical-agents
 - collaborative-agents

@@ -28,6 +28,9 @@ The platform owns:
 * project conventions
 * architecture standards
 * generation rules
+* workflow architect capabilities
+
+The Workflow Architect is a design-time platform capability for inferred architecture. It helps coding agents choose patterns and propose agents before scaffold execution. It is not a runtime execution engine.
 
 The platform does NOT own:
 
