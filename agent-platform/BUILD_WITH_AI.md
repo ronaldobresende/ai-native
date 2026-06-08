@@ -27,6 +27,7 @@ Before creating a project, the coding agent must read:
 * `PROJECT_SPEC.md`
 * `platform.yaml`
 * `BUILD_WITH_AI.md`
+* `WORKFLOW_ARCHITECT.md`
 
 If available, also read:
 
@@ -177,6 +178,12 @@ agents:
 # Conversational Mode
 
 If the user provides a natural language request, first convert it to `agents.yaml`.
+
+Apply these decision rules when translating the request into a topology:
+
+* If the user provides specific agents or topology, preserve it.
+* If the user provides only a goal, use the Workflow Architect capability (see `WORKFLOW_ARCHITECT.md`) to infer the architecture.
+* If the user provides a pattern but not agents, preserve the pattern and infer the missing agents.
 
 Example user request:
 

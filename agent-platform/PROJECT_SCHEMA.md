@@ -17,6 +17,7 @@ version:
 project:
 platform:
 runtime:
+generation:
 interfaces:
 agents:
 ```
@@ -97,6 +98,28 @@ Rules:
 
 * all fields optional
 * defaults may be inferred by the platform
+
+---
+
+# generation — proposed
+
+Optional. Proposed schema section.
+
+Defines Workflow Architect behavior for design-time architecture inference before deterministic scaffold execution.
+
+This is documentation-only and does not change scaffold behavior yet.
+
+Example:
+
+```yaml
+generation:
+  architecture_mode: explicit | inferred
+  workflow_architect:
+    enabled: true
+    pattern_catalog:
+      - ai_native_default
+      - claude_dynamic_workflows
+```
 
 ---
 
